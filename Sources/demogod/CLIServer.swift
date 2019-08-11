@@ -102,7 +102,10 @@ class CLIServer {
 
 
 
+#if TEST_FRAMEWORK_SEARCH_PATHS
+
 import XCTest
+
 extension demogodTests {
 
     func testCLIParsing() {
@@ -192,3 +195,5 @@ extension demogodTests {
     }
     
 }
+
+#endif

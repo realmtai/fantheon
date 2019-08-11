@@ -38,6 +38,12 @@ extension NSError {
                        userInfo: [NSLocalizedDescriptionKey: "Unable parse command"])
     }
     
+    static var MAINRequestServerMissing: Error {
+        return NSError(domain: "com.downloadthebear.main.runtime.error",
+                       code: 000,
+                       userInfo: [NSLocalizedDescriptionKey: "Unable to locate request server"])
+    }
+    
     
     
 }

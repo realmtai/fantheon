@@ -1,3 +1,6 @@
+
+#if TEST_FRAMEWORK_SEARCH_PATHS 
+
 import XCTest
 import class Foundation.Bundle
 
@@ -31,3 +34,6 @@ final class demogodTests: XCTestCase {
         ("testExample", testExample),
     ]
 }
+
+
+#endif
