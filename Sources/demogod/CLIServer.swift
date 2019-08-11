@@ -56,12 +56,12 @@ class CLIServer {
     }
     
     fileprivate func processCommand(fromString cmdStr: String) -> Error? {
-        var tokens = cmdStr.split(separator: " ")
+        var tokens = cmdStr.split(separator: " ", maxSplits: 2)
         if tokens.count < 2 { return NSError.CLICmdParsing }
         
         let noun = String(tokens.removeFirst())
         let verb = String(tokens.removeFirst())
-        let jsonContext = tokens.joined(separator: " ")
+        let jsonContext = String(tokens.popLast() ?? "")
         
         guard let command = cliCmdDataStore[noun]?[verb] else {
             return NSError.CLICmdNotFound
@@ -94,10 +94,12 @@ class CLIServer {
             guard let strongSelf = self else { return }
             strongSelf.outputClient = client
         }
-
     }
     
 }
+
+
+
 
 
 import XCTest
@@ -174,6 +176,7 @@ extension demogodTests {
             
             cli.register(outputClient: { (input) in
                 // Should print at least the error
+                XCTAssertNotEqual(input, "")
                 exp.fulfill()
             })
             

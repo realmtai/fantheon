@@ -19,18 +19,15 @@ struct RequestServerConfig {
 
 
 class RequestServer {
-    let router = Router()
-    let config: RequestServerConfig
     
-    var profile: String = "default"
+    fileprivate let router = Router()
+    fileprivate let config: RequestServerConfig
     
-    let workQueue = DispatchQueue(label: "com.downloadthebear.requestServer.workq")
+    fileprivate var profile: String = "default"
     
-    init(config: RequestServerConfig = RequestServerConfig()) {
-        self.config = config
-    }
+    fileprivate let workQueue = DispatchQueue(label: "com.downloadthebear.requestServer.workq")
     
-    func setupRoutes() {
+    fileprivate func setupRoutes() {
         Log.info("Setup Routes")
         
         router.all { [weak self] (request, resp, next) in
@@ -73,23 +70,30 @@ class RequestServer {
         }
     }
     
-    func run() {
-        Log.info("starting the server")
+    //MARK:- Public API
+    //MARK:
+    
+    init(config: RequestServerConfig = RequestServerConfig()) {
+        self.config = config
+    } 
+
+    func run(onPort port: Int = 8090) {
         self.workQueue.async { [weak self] in
             guard let strongSelf = self else { return }
+            Log.info("starting the server")
             HeliumLogger.use(.debug)
             
             strongSelf.setupRoutes()
             
-            Kitura.addHTTPServer(onPort: 8090, with: strongSelf.router)
+            Kitura.addHTTPServer(onPort: port, with: strongSelf.router)
             Kitura.run()
         }
     }
     
     func stop() {
-        Log.info("stopping the server")
         self.workQueue.async { [weak self] in
             guard let _ = self else { return }
+            Log.info("stopping the server")
             Kitura.stop()
         }
     }
