@@ -11,9 +11,15 @@ import Foundation
 extension String {
     
     static func fileName(fromRequest req: RouterRequest) -> String {
-        let method = req.method.rawValue
-        let path = (req.parsedURL.path ?? "").filteredForFileSystem()
+        let method = req.method.rawValue.filteredForFileSystem()
+        let path = (req.parsedURL.path ?? "/").filteredForFileSystem()
         return [method, path].joined(separator: ".")
+    }
+    
+    static func metaFileName(fromRequest req: RouterRequest) -> String {
+        let meta = "_"
+        let path = fileName(fromRequest: req)
+        return [meta, path].joined(separator: "")
     }
     
     fileprivate static let okayChars = Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890-_.")
@@ -46,4 +52,20 @@ extension NSError {
     
     
     
+}
+
+
+extension Data {
+    func append(fileURL: URL) throws {
+        if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
+            defer {
+                fileHandle.closeFile()
+            }
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(self)
+        }
+        else {
+            try write(to: fileURL, options: .atomic)
+        }
+    }
 }

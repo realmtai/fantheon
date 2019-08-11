@@ -22,7 +22,7 @@ struct RequestServerConfig {
 
 class RequestServer {
     
-   fileprivate let router = Router()
+    fileprivate let router = Router()
 
     fileprivate let workQueue = DispatchQueue(label: "com.downloadthebear.requestServer.workq")
     fileprivate var config: RequestServerConfig
@@ -47,23 +47,42 @@ class RequestServer {
             resp.headers.setType("json")
             if FileManager.default.isReadableFile(atPath: fileUrl.path) {
                 guard let file = try? Data(contentsOf: fileUrl) else {
-                    try resp.send(data: data).status(.accepted)
-                        .end()
+                    try resp.send(data: data).status(.accepted).end()
                     return
                 }
-                try resp.send(data: file).status(.accepted)
-                    .end()
+                try resp.send(data: file).status(.accepted).end()
                 
             } else {
                 if !FileManager.default.isReadableFile(atPath: containedFolder.path) {
-                    try? FileManager.default.createDirectory(atPath: containedFolder.path, withIntermediateDirectories: true, attributes: nil)
+                    try? FileManager.default.createDirectory(atPath: containedFolder.path,
+                                                             withIntermediateDirectories: true,
+                                                             attributes: nil)
                 }
                 try? data.write(to: fileUrl, options: .atomicWrite)
+                try resp.send(data: data).status(.created).end()
                 
-                try resp.send(data: data).status(.created)
-                    .end()
+            }
+            
+            let metaFile = containedFolder
+                .appendingPathComponent(String.metaFileName(fromRequest: request),
+                                        isDirectory: false)
+            if let metaData = RequestServer.processAndCreate(metafileFrom: request).data(using: .utf8) {
+                try? metaData.append(fileURL: metaFile)
             }
         }
+    }
+    
+    static fileprivate func processAndCreate(metafileFrom req: RouterRequest) -> String {
+        let result =
+"""
+### Sample URL
+`\(req.urlURL.absoluteString)`
+### Sample Query
+\(req.queryParameters.description)
+
+
+"""
+        return result
     }
     
     fileprivate func processAndApply(config cfg: RequestServerConfig) {
