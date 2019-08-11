@@ -17,6 +17,11 @@ import Foundation
 //
 //print((try? JSONDecoder().decode(HW.self, from: jData)) ?? HW())
 
+
+enum CLINounTypes: String, CaseIterable {
+    case server = "server"
+}
+
 struct CLIRequestServerContext: Codable {
     var port: Int = 8090
 }
