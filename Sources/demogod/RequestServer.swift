@@ -12,7 +12,9 @@ import LoggerAPI
 
 struct RequestServerConfig {
     var debugLevel: LoggerMessageType = .debug
+    
     var usingStoreUrl: URL = URL(fileURLWithPath: "/Users/Yong/testGround/henny", isDirectory: true)
+    var profile: String = "default"
     var defaultJSONData: Data = (try! JSONSerialization.data(withJSONObject: [:],
                                                              options: .prettyPrinted))
 }
@@ -20,40 +22,36 @@ struct RequestServerConfig {
 
 class RequestServer {
     
-    fileprivate let router = Router()
-    fileprivate let config: RequestServerConfig
-    
-    fileprivate var profile: String = "default"
-    
+   fileprivate let router = Router()
+
     fileprivate let workQueue = DispatchQueue(label: "com.downloadthebear.requestServer.workq")
+    fileprivate var config: RequestServerConfig
     
     fileprivate func setupRoutes() {
         Log.info("Setup Routes")
         
         router.all { [weak self] (request, resp, next) in
             guard let strongSelf = self else { return }
-            let storePath = strongSelf.config.usingStoreUrl
+            let config = strongSelf.config
+            
+            let storePath = config.usingStoreUrl
             let fileName = String.fileName(fromRequest: request)
-            let profileName = strongSelf.profile
+            let profileName = config.profile
             let containedFolder = storePath
                 .appendingPathComponent(profileName, isDirectory: true)
             let fileUrl = containedFolder
                 .appendingPathComponent(fileName, isDirectory: false)
             
-            let data = strongSelf.config.defaultJSONData
+            let data = config.defaultJSONData
             
             resp.headers.setType("json")
             if FileManager.default.isReadableFile(atPath: fileUrl.path) {
                 guard let file = try? Data(contentsOf: fileUrl) else {
-                    try resp
-                        .send(data: data)
-                        .status(.accepted)
+                    try resp.send(data: data).status(.accepted)
                         .end()
                     return
                 }
-                try resp
-                    .send(data: file)
-                    .status(.accepted)
+                try resp.send(data: file).status(.accepted)
                     .end()
                 
             } else {
@@ -62,12 +60,14 @@ class RequestServer {
                 }
                 try? data.write(to: fileUrl, options: .atomicWrite)
                 
-                try resp
-                    .send(data: data)
-                    .status(.created)
+                try resp.send(data: data).status(.created)
                     .end()
             }
         }
+    }
+    
+    fileprivate func processAndApply(config cfg: RequestServerConfig) {
+        HeliumLogger.use(cfg.debugLevel)
     }
     
     //MARK:- Public API
@@ -75,16 +75,30 @@ class RequestServer {
     
     init(config: RequestServerConfig = RequestServerConfig()) {
         self.config = config
-    } 
-
-    func run(onPort port: Int = 8090) {
+    }
+    
+    func update(config cfg: RequestServerConfig) {
         self.workQueue.async { [weak self] in
             guard let strongSelf = self else { return }
-            Log.info("starting the server")
-            HeliumLogger.use(.debug)
+            strongSelf.config = cfg
+            strongSelf.processAndApply(config: cfg)
+        }
+    }
+    
+    func requestServer(config cfgReq: @escaping ((RequestServerConfig)->())) {
+        self.workQueue.async { [weak self] in
+            guard let strongSelf = self else { return }
+            cfgReq(strongSelf.config)
+        }
+    }
+
+    func run(onPort port: Int) {
+        self.workQueue.async { [weak self] in
+            guard let strongSelf = self else { return }
+            HeliumLogger.use(strongSelf.config.debugLevel)
             
+            Log.info("starting the server on port \(port)")
             strongSelf.setupRoutes()
-            
             Kitura.addHTTPServer(onPort: port, with: strongSelf.router)
             Kitura.run()
         }
