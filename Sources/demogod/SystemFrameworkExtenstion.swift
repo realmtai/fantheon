@@ -12,7 +12,8 @@ extension String {
     
     static func fileName(fromRequest req: RouterRequest) -> String {
         let method = req.method.rawValue.filteredForFileSystem()
-        let path = (req.parsedURL.path ?? "/").filteredForFileSystem()
+        let path = (req.parsedURL.path ?? "/").split(separator: "/").joined(separator: ":").filteredForFileSystem()
+        
         return [method, path].joined(separator: ".")
     }
     
@@ -22,7 +23,7 @@ extension String {
         return [meta, path].joined(separator: "")
     }
     
-    fileprivate static let okayChars = Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890-_.")
+    fileprivate static let okayChars = Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890-_.:")
     func filteredForFileSystem() -> String {
         return self.filter { String.okayChars.contains($0) }
     }
