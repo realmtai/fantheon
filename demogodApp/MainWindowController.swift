@@ -10,7 +10,14 @@ import AppKit
 
 class MainWindowController: NSWindowController {
     
-    lazy var theViewController: ViewController = {
+    
+    //MARK:- Life Cycle
+    //MARK:
+    
+
+    //MARK:- private properties
+    //MARK:
+    fileprivate lazy var theViewController: ViewController = {
         let vc = self.contentViewController as! ViewController
         return vc
     }()
@@ -19,11 +26,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var toolbarCommand: NSTextField?
     
     @IBAction func requestToStart(_ sender: NSButton) {
-        var cmd = CliCmd.server(.run(nil))
-        if let port = portNumber?.integerValue, port > 1024 {
-            cmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
-        }
-        theViewController.requestToStart(withCommands: [cmd.cmd])
+        startSequence()
     }
     
     @IBAction func requestToSendCmd(_ sender: NSButton) {
@@ -31,6 +34,36 @@ class MainWindowController: NSWindowController {
             return
         }
         theViewController.requestToSend(Value: "\(valueToSend)\n")
+    }
+    
+    fileprivate func requestWorkingFolder(withResult result: @escaping (URL?)->()) {
+        guard let window = self.window else {
+            result(nil)
+            return
+        }
+        let chooseFile = NSOpenPanel()
+        chooseFile.showsResizeIndicator = true
+        chooseFile.showsHiddenFiles = true
+        chooseFile.canChooseDirectories = true
+        chooseFile.canChooseFiles = false
+        chooseFile.canCreateDirectories = true
+        chooseFile.allowsMultipleSelection = false
+
+        chooseFile.runModal()
+        let url = chooseFile.url
+        result(url)
+    }
+    
+    func startSequence() {
+        requestWorkingFolder { [weak self] (url) in
+            guard let strongSelf = self, let url = url else { return }
+            
+            var cmd = CliCmd.server(.run(nil))
+            if let port = strongSelf.portNumber?.integerValue, port > 1024 {
+                cmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
+            }
+            strongSelf.theViewController.requestToStart(withCommands: [cmd.cmd])
+        }
     }
     
     
