@@ -119,15 +119,15 @@ class RequestServer {
             Log.info("starting the server on port \(port)")
             strongSelf.setupRoutes()
             Kitura.addHTTPServer(onPort: port, with: strongSelf.router)
-            Kitura.run()
+            Kitura.start()
         }
     }
     
     func stop() {
         self.workQueue.async { [weak self] in
             guard let _ = self else { return }
-            Log.info("stopping the server")
             Kitura.stop()
+            Log.info("stopped the server")
         }
     }
 }

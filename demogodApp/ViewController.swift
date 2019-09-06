@@ -10,9 +10,9 @@ class ViewController: NSViewController {
     
     //MARK:- Public API
     //MARK:
-    func requestToStart() {
+    func requestToStart(withCommands cmds:[String] = []) {
         log = "\(#file):\(#line) \(#function)"
-        processRun()
+        processRun(withCommands: cmds)
     }
     
     func requestToStop() {
@@ -73,7 +73,7 @@ class ViewController: NSViewController {
 
     //MARK:- Private Functions
     //MARK:
-    fileprivate func processRun() {
+    fileprivate func processRun(withCommands cmds:[String]) {
         self.processQueue.async { [weak self] in
             guard let strongSelf = self else { return }
             if strongSelf.process != nil { return }
@@ -85,9 +85,12 @@ class ViewController: NSViewController {
             
             strongSelf.attachToPipes(forProcess: proc)
             try? proc.run()
-
-            proc.waitUntilExit()
-            strongSelf.process = nil
+            
+            cmds.forEach({ strongSelf.processSend(stringValue: $0) })
+            proc.terminationHandler = {[weak self] (proc) in
+                guard let strongSelf = self else { return }
+                strongSelf.process = nil
+            }
         }
     }
     

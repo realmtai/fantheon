@@ -53,10 +53,10 @@ struct CLIRequestServerContext: Codable {
 
 
 extension Encodable {
-    var JSONString: String {
-        guard let jData = try? JSONSerialization.data(withJSONObject: self),
+    var JSONString: String? {
+        guard let jData = try? JSONEncoder().encode(self),
             let result = String(data: jData, encoding: .utf8) else {
-                return ""
+                return nil
         }
         return result
     }

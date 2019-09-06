@@ -15,10 +15,15 @@ class MainWindowController: NSWindowController {
         return vc
     }()
     
+    @IBOutlet weak var portNumber: NSTextField?
     @IBOutlet weak var toolbarCommand: NSTextField?
     
     @IBAction func requestToStart(_ sender: NSButton) {
-        theViewController.requestToStart()
+        var cmd = CliCmd.server(.run(nil))
+        if let port = portNumber?.integerValue, port > 1024 {
+            cmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
+        }
+        theViewController.requestToStart(withCommands: [cmd.cmd])
     }
     
     @IBAction func requestToSendCmd(_ sender: NSButton) {
