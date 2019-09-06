@@ -150,7 +150,7 @@ class ViewController: NSViewController {
     fileprivate func sendString(toProcess proc: Process,_ value: String) {
         guard let stdIn = proc.standardInput as? Pipe,
             let data = value.data(using: .utf8) else {
-                log = "sendEOF but no standard in or data is not in utf8 formate"
+                log = "sendString but no standard in or data is not in utf8 format"
                 return }
         stdIn.fileHandleForWriting.write(data)
     }
