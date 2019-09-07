@@ -49,6 +49,27 @@ let _ = {
 }()
 
 
+let _ = {
+    let cmd = CliCmd.server(.update(nil))
+    cli.register(command: CLICommand(noun: cmd.noun,
+                                     verb: cmd.verb,
+                                     action: { [weak server] (context) -> (Error?) in
+                                        guard let server = server,
+                                            let jData = context.data(using: .utf8) else {
+                                                return NSError.MAINRequestServerMissing
+                                        }
+                                        let context = (try? JSONDecoder().decode(RequestServerContext.self, from: jData))
+                                            ?? RequestServerContext()
+                                        server.update(config: context)
+                                        return nil
+        }, help: { () -> (String) in
+            return ""
+    }))
+}()
+
+
+
+
 
 
 

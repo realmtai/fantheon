@@ -11,16 +11,14 @@ import AppKit
 class MainWindowController: NSWindowController {
     
     
-    //MARK:- Life Cycle
-    //MARK:
-    
-
     //MARK:- private properties
     //MARK:
     fileprivate lazy var theViewController: ViewController = {
         let vc = self.contentViewController as! ViewController
         return vc
     }()
+    
+    var serverConfig = RequestServerContext()
     
     @IBOutlet weak var portNumber: NSTextField?
     @IBOutlet weak var toolbarCommand: NSTextField?
@@ -36,11 +34,10 @@ class MainWindowController: NSWindowController {
         theViewController.requestToSend(Value: "\(valueToSend)\n")
     }
     
+    
+    //MARK:- Private functions
+    //MARK:
     fileprivate func requestWorkingFolder(withResult result: @escaping (URL?)->()) {
-        guard let window = self.window else {
-            result(nil)
-            return
-        }
         let chooseFile = NSOpenPanel()
         chooseFile.showsResizeIndicator = true
         chooseFile.showsHiddenFiles = true
@@ -54,15 +51,18 @@ class MainWindowController: NSWindowController {
         result(url)
     }
     
-    func startSequence() {
+    fileprivate func startSequence() {
         requestWorkingFolder { [weak self] (url) in
             guard let strongSelf = self, let url = url else { return }
-            
-            var cmd = CliCmd.server(.run(nil))
+            var startCmd = CliCmd.server(.run(nil))
             if let port = strongSelf.portNumber?.integerValue, port > 1024 {
-                cmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
+                startCmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
             }
-            strongSelf.theViewController.requestToStart(withCommands: [cmd.cmd])
+            var cfg = strongSelf.serverConfig
+            cfg.storeUrl = url
+            let serveCmd = CliCmd.server(.update(cfg))
+            strongSelf.theViewController.requestToStart(withCommands: [startCmd.cmd,
+                                                                       serveCmd.cmd])
         }
     }
     

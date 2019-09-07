@@ -9,23 +9,18 @@ import Foundation
 import HeliumLogger
 import LoggerAPI
 
-
-struct RequestServerConfig {
+struct RequestServerDevConfig {
     var debugLevel: LoggerMessageType = .debug
-    
-    var usingStoreUrl: URL = URL(fileURLWithPath: "/Users/Yong/testGround/henny", isDirectory: true)
-    var profile: String = "default"
-    var defaultJSONData: Data = (try! JSONSerialization.data(withJSONObject: [:],
-                                                             options: .prettyPrinted))
 }
-
 
 class RequestServer {
     
     fileprivate let router = Router()
 
     fileprivate let workQueue = DispatchQueue(label: "com.downloadthebear.requestServer.workq")
-    fileprivate var config: RequestServerConfig
+    fileprivate var config: RequestServerContext
+    
+    fileprivate var devConfig = RequestServerDevConfig()
     
     fileprivate func setupRoutes() {
         Log.info("Setup Routes")
@@ -34,7 +29,7 @@ class RequestServer {
             guard let strongSelf = self else { return }
             let config = strongSelf.config
             
-            let storePath = config.usingStoreUrl
+            let storePath = config.storeUrl
             let fileName = String.fileName(fromRequest: request)
             let profileName = config.profile
             let containedFolder = storePath
@@ -85,18 +80,18 @@ class RequestServer {
         return result
     }
     
-    fileprivate func processAndApply(config cfg: RequestServerConfig) {
-        HeliumLogger.use(cfg.debugLevel)
+    fileprivate func processAndApply(config cfg: RequestServerContext) {
+        HeliumLogger.use(devConfig.debugLevel)
     }
     
     //MARK:- Public API
     //MARK:
     
-    init(config: RequestServerConfig = RequestServerConfig()) {
+    init(config: RequestServerContext = RequestServerContext()) {
         self.config = config
     }
     
-    func update(config cfg: RequestServerConfig) {
+    func update(config cfg: RequestServerContext) {
         self.workQueue.async { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.config = cfg
@@ -104,7 +99,7 @@ class RequestServer {
         }
     }
     
-    func requestServer(config cfgReq: @escaping ((RequestServerConfig)->())) {
+    func requestServer(config cfgReq: @escaping ((RequestServerContext)->())) {
         self.workQueue.async { [weak self] in
             guard let strongSelf = self else { return }
             cfgReq(strongSelf.config)
@@ -114,7 +109,7 @@ class RequestServer {
     func run(onPort port: Int) {
         self.workQueue.async { [weak self] in
             guard let strongSelf = self else { return }
-            HeliumLogger.use(strongSelf.config.debugLevel)
+            HeliumLogger.use(strongSelf.devConfig.debugLevel)
             
             Log.info("starting the server on port \(port)")
             strongSelf.setupRoutes()
@@ -130,4 +125,5 @@ class RequestServer {
             Log.info("stopped the server")
         }
     }
+    
 }

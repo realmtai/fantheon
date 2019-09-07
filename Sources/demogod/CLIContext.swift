@@ -8,6 +8,7 @@ enum CliCmd {
     enum ServerVerb {
         case run(CLIRequestServerContext?)
         case stop
+        case update(RequestServerContext?)
     }
     case server(ServerVerb)
 }
@@ -25,6 +26,7 @@ extension CliCmd {
             switch verb {
             case .run(_): return "run"
             case .stop: return "stop"
+            case .update: return "update"
             }
         }
     }
@@ -35,6 +37,7 @@ extension CliCmd {
             switch vb {
             case .run(let ctx): return CliCmd.buildCmd(noun, verb, ctx?.JSONString)
             case .stop: return CliCmd.buildCmd(noun, verb, nil)
+            case .update(let ctx): return CliCmd.buildCmd(noun, verb, ctx?.JSONString)
             }
         }
     }
@@ -48,6 +51,14 @@ extension CliCmd {
 
 struct CLIRequestServerContext: Codable {
     var port: Int = 8090
+}
+
+
+
+struct RequestServerContext: Codable {
+    var storeUrl: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    var profile: String = "default"
+    var defaultJSONData: Data = (try! JSONSerialization.data(withJSONObject: [:], options: .prettyPrinted))
 }
 
 
