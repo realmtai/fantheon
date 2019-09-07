@@ -4,6 +4,10 @@
 //
 import Foundation
 
+//MARK:- CLI Commands
+//MARK:
+/////////////////////////////
+
 enum CliCmd {
     enum ServerVerb {
         case run(CLIRequestServerContext?)
@@ -48,6 +52,9 @@ extension CliCmd {
 }
 
 
+//MARK:- CLI Commands Context
+//MARK:
+/////////////////////////////
 
 struct CLIRequestServerContext: Codable {
     var port: Int = 8090
@@ -61,7 +68,9 @@ struct RequestServerContext: Codable {
     var defaultJSONData: Data = (try! JSONSerialization.data(withJSONObject: [:], options: .prettyPrinted))
 }
 
-
+//MARK:- CLI Commands Context Encoding
+//MARK:
+//////////////////////////////////////
 
 extension Encodable {
     var JSONString: String? {
