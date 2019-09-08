@@ -102,7 +102,7 @@ class CLIServer {
 
 
 
-#if TEST_FRAMEWORK_SEARCH_PATHS
+#if XCTests
 
 import XCTest
 

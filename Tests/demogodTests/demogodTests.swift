@@ -1,5 +1,5 @@
 
-#if TEST_FRAMEWORK_SEARCH_PATHS 
+#if XCTests
 
 import XCTest
 import class Foundation.Bundle

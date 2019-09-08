@@ -10,8 +10,9 @@ import Foundation
 
 enum CliCmd {
     enum ServerVerb {
+        // CTL-D
+        // case stop
         case run(CLIRequestServerContext?)
-        case stop
         case update(RequestServerContext?)
     }
     case server(ServerVerb)
@@ -29,7 +30,6 @@ extension CliCmd {
         case .server(let verb):
             switch verb {
             case .run(_): return "run"
-            case .stop: return "stop"
             case .update: return "update"
             }
         }
@@ -40,7 +40,6 @@ extension CliCmd {
         case .server(let vb):
             switch vb {
             case .run(let ctx): return CliCmd.buildCmd(noun, verb, ctx?.JSONString)
-            case .stop: return CliCmd.buildCmd(noun, verb, nil)
             case .update(let ctx): return CliCmd.buildCmd(noun, verb, ctx?.JSONString)
             }
         }

@@ -724,13 +724,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="B6DD4D18-4A90-4B7F-8AB1-23243DFF864D" label="Run/Stop" paletteLabel="Run/Stop" id="Qq5-2U-2zz">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="43" height="43"/>
-                                    <size key="maxSize" width="43" height="43"/>
+                                    <size key="minSize" width="32" height="18"/>
+                                    <size key="maxSize" width="48" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="hM4-PJ-pFj">
-                                        <rect key="frame" x="7" y="14" width="43" height="43"/>
+                                        <rect key="frame" x="11" y="14" width="35" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UU3-Nt-E4h">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <buttonCell key="cell" type="bevel" title="" bezelStyle="regularSquare" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UU3-Nt-E4h">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" size="20" name="Ionicons"/>
                                         </buttonCell>
                                         <connections>

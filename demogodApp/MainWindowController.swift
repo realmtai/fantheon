@@ -24,7 +24,12 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var toolbarCommand: NSTextField?
     
     @IBAction func requestToStart(_ sender: NSButton) {
-        startSequence()
+        if sender.state == .off {
+            startSequence()
+        } else {
+            theViewController.requestToStop()
+        }
+        sender.title = (sender.state == .on ?"" :"")
     }
     
     @IBAction func requestToSendCmd(_ sender: NSButton) {

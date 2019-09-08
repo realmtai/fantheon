@@ -11,7 +11,7 @@ let cli = CLIServer()
 
 
 cli.register { (output) in
-    Log.debug(output)
+    Log.info(output)
 }
 
 let _ = {
@@ -26,22 +26,6 @@ let _ = {
                                         let context = (try? JSONDecoder().decode(CLIRequestServerContext.self, from: jData))
                                             ?? CLIRequestServerContext()
                                         server.run(onPort: context.port)
-                                        return nil
-        }, help: { () -> (String) in
-            return ""
-    }))
-}()
-
-
-let _ = {
-    let cmd = CliCmd.server(.stop)
-    cli.register(command: CLICommand(noun: cmd.noun,
-                                     verb: cmd.verb,
-                                     action: { [weak server] (context) -> (Error?) in
-                                        guard let server = server else {
-                                            return NSError.MAINRequestServerMissing
-                                        }
-                                        server.stop()
                                         return nil
         }, help: { () -> (String) in
             return ""

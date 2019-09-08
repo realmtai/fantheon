@@ -119,8 +119,7 @@ class RequestServer {
     }
     
     func stop() {
-        self.workQueue.async { [weak self] in
-            guard let _ = self else { return }
+        self.workQueue.async {
             Kitura.stop()
             Log.info("stopped the server")
         }
