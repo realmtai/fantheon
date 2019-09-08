@@ -6,17 +6,19 @@
 
 import Cocoa
 
+extension String: Differentiable {}
+
 class ViewController: NSViewController {
     
     //MARK:- Public API
     //MARK:
     func requestToStart(withCommands cmds:[String] = []) {
-        log = "\(#file):\(#line) \(#function)"
+        log = "\(#function) \(cmds)"
         processRun(withCommands: cmds)
     }
     
     func requestToStop() {
-        log = "\(#file):\(#line) \(#function)"
+        log = "\(#function)"
         processStop()
     }
     
@@ -27,21 +29,25 @@ class ViewController: NSViewController {
     
     //MARK:- Private Properties
     //MARK:
-    @IBOutlet weak var logview: NSScrollView?
+    @IBOutlet weak var tableView: NSTableView?
+    fileprivate var tableViewDataStore: [String] = [] {
+        didSet {
+            let changeset = StagedChangeset(source: oldValue, target: tableViewDataStore)
+            tableView?.reload(using: changeset, with: .effectFade) { (_) in }
+        }
+    }
     
     // Will be Blocking when running process
     fileprivate let processQueue = DispatchQueue(label: "com.downloadthebear.ViewController.processQueue")
-    
     fileprivate let workQueue = DispatchQueue(label: "com.downloadthebear.ViewController.workQueue")
 
     fileprivate var log: String = "" {
         didSet {
             let localValue = log
             DispatchQueue.main.async { [weak self] in
-                print(localValue)
-                guard let strongSelf = self,
-                    let docView = strongSelf.logview?.documentView else { return }
-                docView.insertText(localValue)
+//                print(localValue)
+                guard let strongSelf = self else { return }
+                strongSelf.tableViewDataStore.append(localValue)
             }
         }
     }
@@ -122,7 +128,7 @@ class ViewController: NSViewController {
         
         guard let stdOut = proc.standardOutput as? Pipe,
             let stdErr = proc.standardError as? Pipe else {
-                log = "No Stdin or stdout"
+                log = "No stderr or stdout"
                 return
         }
             
@@ -158,6 +164,24 @@ class ViewController: NSViewController {
         stdIn.fileHandleForWriting.write(data)
     }
     
-    
 }
 
+
+extension ViewController: NSTableViewDelegate, NSTableViewDataSource {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return tableViewDataStore.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let datum = tableViewDataStore[row]
+        if tableColumn?.identifier == NSUserInterfaceItemIdentifier(rawValue: "logcolumn") {
+            let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "loginfo")
+            guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else { return nil }
+            cellView.textField?.stringValue = datum
+            return cellView
+        }
+        return nil
+    }
+    
+}
