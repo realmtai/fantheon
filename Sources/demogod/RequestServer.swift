@@ -39,7 +39,8 @@ class RequestServer {
             
             let data = config.defaultJSONData
             
-            resp.headers.setType("json")
+            resp.headers.setType(request.urlURL.pathExtension)
+            
             if FileManager.default.isReadableFile(atPath: fileUrl.path) {
                 guard let file = try? Data(contentsOf: fileUrl) else {
                     try resp.send(data: data).status(.accepted).end()
