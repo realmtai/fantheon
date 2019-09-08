@@ -1,0 +1,3 @@
+[submodule "frameworks/DifferenceKit"]
+	path = frameworks/DifferenceKit
+	url = git@github.com:ra1028/DifferenceKit.git
