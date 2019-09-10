@@ -813,24 +813,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-PD-zUY">
-                                <rect key="frame" x="18" y="263" width="337" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" enabled="NO" alignment="right" title="Label" id="WLv-Qq-guP">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="huV-Zc-BY8">
-                                <rect key="frame" x="355" y="253" width="81" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="69" id="65n-pB-bXS"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hvz-0d-AVh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4wJ-SN-FrQ">
                                 <rect key="frame" x="353" y="13" width="85" height="32"/>
                                 <constraints>
@@ -845,8 +827,53 @@
                                     <action selector="requestUpdateConfig:" target="c4F-AB-VVy" id="tJX-BR-Msm"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-PD-zUY">
+                                <rect key="frame" x="18" y="263" width="256" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" enabled="NO" alignment="right" title="Label" id="WLv-Qq-guP">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="huV-Zc-BY8">
+                                <rect key="frame" x="274" y="253" width="162" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="65n-pB-bXS"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Change Environment" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hvz-0d-AVh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="requestToChangeStoreURL:" target="c4F-AB-VVy" id="g8I-ci-r5f"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W6k-eE-UAM">
+                                <rect key="frame" x="78" y="233" width="352" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="qKj-XC-Pnc">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="requestToUpdateProfile:" target="c4F-AB-VVy" id="Olx-Ha-xjd"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TIv-Po-gcF">
+                                <rect key="frame" x="18" y="231" width="54" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Cra-e6-aBK"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="VVh-5q-BL9"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Profile" id="d5f-Vx-3Iy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="W6k-eE-UAM" firstAttribute="top" secondItem="3Bm-PD-zUY" secondAttribute="bottom" constant="8" id="37x-gc-7hj"/>
                             <constraint firstAttribute="bottom" secondItem="4wJ-SN-FrQ" secondAttribute="bottom" constant="20" id="6TD-oz-swc"/>
                             <constraint firstItem="3Bm-PD-zUY" firstAttribute="top" secondItem="WYo-gL-a3P" secondAttribute="top" constant="20" id="Bnh-UM-q1z"/>
                             <constraint firstAttribute="trailing" secondItem="4wJ-SN-FrQ" secondAttribute="trailing" constant="18" id="EK3-ez-npY"/>
@@ -854,8 +881,16 @@
                             <constraint firstItem="3Bm-PD-zUY" firstAttribute="leading" secondItem="WYo-gL-a3P" secondAttribute="leading" constant="20" id="NdQ-WS-UlM"/>
                             <constraint firstItem="huV-Zc-BY8" firstAttribute="firstBaseline" secondItem="3Bm-PD-zUY" secondAttribute="firstBaseline" id="VaE-ee-1bp"/>
                             <constraint firstAttribute="trailing" secondItem="huV-Zc-BY8" secondAttribute="trailing" constant="20" id="ZWx-l0-PgF"/>
+                            <constraint firstItem="TIv-Po-gcF" firstAttribute="leading" secondItem="WYo-gL-a3P" secondAttribute="leading" constant="20" id="e3b-9f-XPD"/>
+                            <constraint firstItem="TIv-Po-gcF" firstAttribute="firstBaseline" secondItem="W6k-eE-UAM" secondAttribute="firstBaseline" id="n0I-dS-GQr"/>
+                            <constraint firstAttribute="trailing" secondItem="W6k-eE-UAM" secondAttribute="trailing" constant="20" id="qTP-gt-whw"/>
+                            <constraint firstItem="W6k-eE-UAM" firstAttribute="leading" secondItem="TIv-Po-gcF" secondAttribute="trailing" constant="8" id="xbE-is-GkU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="locationLabel" destination="3Bm-PD-zUY" id="gAf-WN-y2a"/>
+                        <outlet property="profileTextField" destination="W6k-eE-UAM" id="ISR-aW-ODB"/>
+                    </connections>
                 </viewController>
                 <customObject id="XDo-bW-r6u" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
