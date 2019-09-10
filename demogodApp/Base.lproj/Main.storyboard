@@ -764,11 +764,28 @@
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="39D072F1-F639-44AF-B805-AF399B61CC78" label="Config" paletteLabel="Config" id="ePx-3o-6tv">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="48" height="32"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <button key="view" verticalHuggingPriority="750" id="zQe-YC-nCb">
+                                        <rect key="frame" x="0.0" y="14" width="48" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W1F-TA-cG5">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="20" name="Ionicons"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="requestForUserConfig:" target="B8D-0N-5wS" id="s3V-Ne-nTb"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="Qq5-2U-2zz"/>
                                 <toolbarItem reference="DZg-vC-wDy"/>
                                 <toolbarItem reference="Kav-kV-crd"/>
+                                <toolbarItem reference="ePx-3o-6tv"/>
                                 <toolbarItem reference="Rz8-WW-fGU"/>
                                 <toolbarItem reference="aYz-LU-vdb"/>
                                 <toolbarItem reference="Zzp-U4-Zcz"/>
@@ -787,6 +804,62 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="125" y="272"/>
+        </scene>
+        <!--Config Server View Controller-->
+        <scene sceneID="09O-YC-g2e">
+            <objects>
+                <viewController storyboardIdentifier="ConfigServerViewController" id="c4F-AB-VVy" customClass="ConfigServerViewController" customModule="demogodApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="WYo-gL-a3P">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-PD-zUY">
+                                <rect key="frame" x="18" y="263" width="337" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" enabled="NO" alignment="right" title="Label" id="WLv-Qq-guP">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="huV-Zc-BY8">
+                                <rect key="frame" x="355" y="253" width="81" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="65n-pB-bXS"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hvz-0d-AVh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4wJ-SN-FrQ">
+                                <rect key="frame" x="353" y="13" width="85" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="DQA-L0-vqA"/>
+                                    <constraint firstAttribute="width" constant="73" id="e7s-Al-zGh"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3MX-RK-uiI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="requestUpdateConfig:" target="c4F-AB-VVy" id="tJX-BR-Msm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="4wJ-SN-FrQ" secondAttribute="bottom" constant="20" id="6TD-oz-swc"/>
+                            <constraint firstItem="3Bm-PD-zUY" firstAttribute="top" secondItem="WYo-gL-a3P" secondAttribute="top" constant="20" id="Bnh-UM-q1z"/>
+                            <constraint firstAttribute="trailing" secondItem="4wJ-SN-FrQ" secondAttribute="trailing" constant="18" id="EK3-ez-npY"/>
+                            <constraint firstItem="huV-Zc-BY8" firstAttribute="leading" secondItem="3Bm-PD-zUY" secondAttribute="trailing" constant="8" id="Jcf-QO-HAS"/>
+                            <constraint firstItem="3Bm-PD-zUY" firstAttribute="leading" secondItem="WYo-gL-a3P" secondAttribute="leading" constant="20" id="NdQ-WS-UlM"/>
+                            <constraint firstItem="huV-Zc-BY8" firstAttribute="firstBaseline" secondItem="3Bm-PD-zUY" secondAttribute="firstBaseline" id="VaE-ee-1bp"/>
+                            <constraint firstAttribute="trailing" secondItem="huV-Zc-BY8" secondAttribute="trailing" constant="20" id="ZWx-l0-PgF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="XDo-bW-r6u" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="805" y="265"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -809,7 +882,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="logcolumn" editable="NO" width="393" minWidth="40" maxWidth="1000" id="OPr-Hd-A4Z">
+                                                <tableColumn identifier="logcolumn" editable="NO" width="393" minWidth="40" maxWidth="3000" id="OPr-Hd-A4Z">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -829,7 +902,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VR7-Qw-w13">
                                                                     <rect key="frame" x="0.0" y="0.0" width="373" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Table View Cell" id="h7X-Gz-X7q">
+                                                                    <textFieldCell key="cell" lineBreakMode="charWrapping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Table View Cell" id="h7X-Gz-X7q">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
