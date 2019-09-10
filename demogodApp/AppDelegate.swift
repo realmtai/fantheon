@@ -25,16 +25,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension NSResponder {
     
     func requestWorkingFolder(withResult result: @escaping (URL?)->()) {
-        let chooseFile = NSOpenPanel()
-        chooseFile.showsResizeIndicator = true
-        chooseFile.showsHiddenFiles = true
-        chooseFile.canChooseDirectories = true
-        chooseFile.canChooseFiles = false
-        chooseFile.canCreateDirectories = true
-        chooseFile.allowsMultipleSelection = false 
-        chooseFile.runModal()
-        let url = chooseFile.url
-        result(url)
+        DispatchQueue.main.async {
+            let chooseFile = NSOpenPanel()
+            chooseFile.showsResizeIndicator = true
+            chooseFile.showsHiddenFiles = true
+            chooseFile.canChooseDirectories = true
+            chooseFile.canChooseFiles = false
+            chooseFile.canCreateDirectories = true
+            chooseFile.allowsMultipleSelection = false
+            chooseFile.runModal()
+            let url = chooseFile.url
+            result(url)
+        }
     }
     
 }
