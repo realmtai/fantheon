@@ -34,9 +34,8 @@ class MainWindowController: NSWindowController {
                 startCmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
             }
             
-            var cfg = strongSelf.serverConfig
-            cfg.storeUrl = (url ?? cfg.storeUrl)
-            strongSelf.serverConfig = cfg
+            strongSelf.serverConfig.storeUrl = (url ?? strongSelf.serverConfig.storeUrl)
+            let cfg = strongSelf.serverConfig
             
             let serveCmd = CliCmd.server(.update(cfg))
             strongSelf.theViewController.requestToStart(withCommands: [startCmd.cmd,
