@@ -11,7 +11,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
@@ -23,3 +22,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
+
+
+extension NSResponder {
+    
+    func requestWorkingFolder(withResult result: @escaping (URL?)->()) {
+        let chooseFile = NSOpenPanel()
+        chooseFile.showsResizeIndicator = true
+        chooseFile.showsHiddenFiles = true
+        chooseFile.canChooseDirectories = true
+        chooseFile.canChooseFiles = false
+        chooseFile.canCreateDirectories = true
+        chooseFile.allowsMultipleSelection = false 
+        chooseFile.runModal()
+        let url = chooseFile.url
+        result(url)
+    }
+    
+}

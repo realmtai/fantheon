@@ -26,31 +26,18 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var toolbarCommand: NSTextField?
     
     //MARK:- Private functions
-    //MARK:
-    fileprivate func requestWorkingFolder(withResult result: @escaping (URL?)->()) {
-        let chooseFile = NSOpenPanel()
-        chooseFile.showsResizeIndicator = true
-        chooseFile.showsHiddenFiles = true
-        chooseFile.canChooseDirectories = true
-        chooseFile.canChooseFiles = false
-        chooseFile.canCreateDirectories = true
-        chooseFile.allowsMultipleSelection = false
-
-        chooseFile.runModal()
-        let url = chooseFile.url
-        result(url)
-    }
-    
+    //MARK: 
     fileprivate func startSequence() {
         requestWorkingFolder { [weak self] (url) in
-            guard let strongSelf = self, let url = url else { return }
+            guard let strongSelf = self else {
+                return }
             var startCmd = CliCmd.server(.run(nil))
             if let port = strongSelf.portNumber?.integerValue, port > 1024 {
                 startCmd = CliCmd.server(.run(CLIRequestServerContext(port: port)))
             }
             
             var cfg = strongSelf.serverConfig
-            cfg.storeUrl = url
+            cfg.storeUrl = (url ?? cfg.storeUrl)
             strongSelf.serverConfig = cfg
             
             let serveCmd = CliCmd.server(.update(cfg))
