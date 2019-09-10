@@ -1,6 +1,5 @@
 //
 //  ConfigServerViewController.swift
-//  demogodApp
 //
 //
 

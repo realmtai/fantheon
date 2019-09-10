@@ -1,8 +1,6 @@
 //
 //  AppDelegate.swift
-//  demogodApp
 //
-//  Created by PersonA on 8/4/19.
 //
 
 import Cocoa

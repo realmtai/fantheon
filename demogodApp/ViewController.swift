@@ -1,6 +1,5 @@
 //
 //  ViewController.swift
-//  demogodApp
 //
 //
 

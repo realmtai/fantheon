@@ -1,8 +1,6 @@
 //
 //  MainWindowController.swift
-//  demogodApp
 //
-//  Created by PersonA on 9/2/19.
 //
 
 import Foundation
