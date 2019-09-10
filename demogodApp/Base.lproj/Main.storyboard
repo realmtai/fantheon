@@ -885,6 +885,9 @@
                                             <size key="minSize" width="412" height="111"/>
                                             <size key="maxSize" width="419" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="c4F-AB-VVy" id="Hme-EF-ro8"/>
+                                            </connections>
                                         </textView>
                                     </subviews>
                                 </clipView>
@@ -910,7 +913,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PWH-dZ-fTx">
                                 <rect key="frame" x="19" y="183" width="321" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="Q7q-Kk-zRW">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="No File Loaded" id="Q7q-Kk-zRW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -926,6 +929,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="requestToSelectDefaultFile:" target="c4F-AB-VVy" id="QhH-rO-YFr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -956,8 +962,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="defaultRespTextView" destination="d3h-ZI-CxW" id="3TJ-X0-3gP"/>
                         <outlet property="locationLabel" destination="3Bm-PD-zUY" id="gAf-WN-y2a"/>
                         <outlet property="profileTextField" destination="W6k-eE-UAM" id="ISR-aW-ODB"/>
+                        <outlet property="selectedFileLabel" destination="PWH-dZ-fTx" id="own-k8-kDE"/>
                     </connections>
                 </viewController>
                 <customObject id="XDo-bW-r6u" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

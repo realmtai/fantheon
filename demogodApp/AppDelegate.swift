@@ -39,4 +39,19 @@ extension NSResponder {
         }
     }
     
+    func requestFile(withResult result: @escaping (URL?)->()) {
+        DispatchQueue.main.async {
+            let chooseFile = NSOpenPanel()
+            chooseFile.showsResizeIndicator = true
+            chooseFile.showsHiddenFiles = true
+            chooseFile.canChooseDirectories = false
+            chooseFile.canChooseFiles = true
+            chooseFile.canCreateDirectories = true
+            chooseFile.allowsMultipleSelection = false
+            chooseFile.runModal()
+            let url = chooseFile.url
+            result(url)
+        }
+    }
+    
 }
