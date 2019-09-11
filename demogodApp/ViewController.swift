@@ -21,8 +21,8 @@ class ViewController: NSViewController {
         processStop()
     }
     
-    func requestToSend(Value val: String) {
-        log = "\(#file):\(#line) \(#function) \(val)"
+    func requestToSend(cmd val: String) {
+        log = "\(#function) \(val)"
         processSend(stringValue: val)
     }
     
@@ -46,7 +46,8 @@ class ViewController: NSViewController {
             DispatchQueue.main.async { [weak self] in
 //                print(localValue)
                 guard let strongSelf = self else { return }
-                strongSelf.tableViewDataStore.append(localValue)
+                let trunkString = String(localValue.prefix(65536))
+                strongSelf.tableViewDataStore.append(trunkString)
             }
         }
     }
@@ -55,7 +56,6 @@ class ViewController: NSViewController {
         let mainBundle = Bundle.main.bundleURL
             .appendingPathComponent("Contents/Resources", isDirectory: true)
             .appendingPathComponent("demogod")
-        log = "Running process \(mainBundle.absoluteString)"
         return mainBundle
     }()
     
@@ -81,7 +81,9 @@ class ViewController: NSViewController {
     fileprivate func processRun(withCommands cmds:[String]) {
         self.processQueue.async { [weak self] in
             guard let strongSelf = self else { return }
-            if strongSelf.process != nil { return }
+            if strongSelf.process != nil {
+                strongSelf.log = "Error: process is already running!"
+                return }
 
             let proc = Process()
             let binUrl = strongSelf.binaryURL
@@ -127,7 +129,7 @@ class ViewController: NSViewController {
         
         guard let stdOut = proc.standardOutput as? Pipe,
             let stdErr = proc.standardError as? Pipe else {
-                log = "No stderr or stdout"
+                log = "Error: No stderr or stdout"
                 return
         }
             
@@ -150,7 +152,7 @@ class ViewController: NSViewController {
     
     fileprivate func sendEOF(toProcess proc: Process) {
         guard let stdIn = proc.standardInput as? Pipe else {
-            log = "sendEOF but no standard in"
+            log = "Error: sendEOF but no standard in"
             return }
         stdIn.fileHandleForWriting.closeFile()
     }
@@ -158,7 +160,7 @@ class ViewController: NSViewController {
     fileprivate func sendString(toProcess proc: Process,_ value: String) {
         guard let stdIn = proc.standardInput as? Pipe,
             let data = value.data(using: .utf8) else {
-                log = "sendString but no standard in or data is not in utf8 format"
+                log = "Error: sendString but no standard in or data is not in utf8 format"
                 return }
         stdIn.fileHandleForWriting.write(data)
     }

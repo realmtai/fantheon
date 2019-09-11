@@ -10,7 +10,7 @@ import HeliumLogger
 import LoggerAPI
 
 struct RequestServerDevConfig {
-    var debugLevel: LoggerMessageType = .debug
+    var debugLevel: LoggerMessageType = .info
 }
 
 class RequestServer {
@@ -20,8 +20,12 @@ class RequestServer {
     fileprivate let workQueue = DispatchQueue(label: "com.downloadthebear.requestServer.workq")
     fileprivate var config: RequestServerContext
     
+    #if DEBUG
+    fileprivate var devConfig = RequestServerDevConfig(debugLevel: .debug)
+    #else
     fileprivate var devConfig = RequestServerDevConfig()
-    
+    #endif
+
     fileprivate func setupRoutes() {
         Log.info("Setup Routes")
         
@@ -29,6 +33,7 @@ class RequestServer {
             guard let strongSelf = self else { return }
             let config = strongSelf.config
             
+            Log.info("Request \(request.urlURL.absoluteString)")
             let storePath = config.storeUrl
             let fileName = String.fileName(fromRequest: request)
             let profileName = config.profile
@@ -38,7 +43,6 @@ class RequestServer {
                 .appendingPathComponent(fileName, isDirectory: false)
             
             let data = config.defaultJSONData
-            
             resp.headers.setType(request.urlURL.pathExtension)
             
             if FileManager.default.isReadableFile(atPath: fileUrl.path) {
@@ -55,7 +59,7 @@ class RequestServer {
                                                              attributes: nil)
                 }
                 try? data.write(to: fileUrl, options: .atomicWrite)
-                try resp.send(data: data).status(.created).end()
+                try? resp.send(data: data).status(.created).end()
                 
             }
             

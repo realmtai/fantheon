@@ -58,7 +58,7 @@ class MainWindowController: NSWindowController {
         guard let valueToSend = toolbarCommand?.stringValue else {
             return
         }
-        theViewController.requestToSend(Value: valueToSend)
+        theViewController.requestToSend(cmd: valueToSend)
     }
     
     @IBAction func requestForUserConfig(_ sender: NSButton) {
@@ -73,7 +73,7 @@ class MainWindowController: NSWindowController {
                 guard let strongSelf = self else { return }
                 let serveCmd = CliCmd.server(.update(newConfig))
                 strongSelf.serverConfig = newConfig
-                strongSelf.theViewController.requestToSend(Value: serveCmd.cmd)
+                strongSelf.theViewController.requestToSend(cmd: serveCmd.cmd)
             }
         }
         theViewController.presentAsSheet(configUpdateVC)

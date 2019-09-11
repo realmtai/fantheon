@@ -51,7 +51,7 @@ class CLIServer {
             guard let err = processCommand(fromString: command) else {
                 continue
             }
-            output = "Input cmd ~> \(command)\nError <~ \(err.localizedDescription)"
+            output = "Input cmd ~> \(command) <=> Error <~ \(err.localizedDescription)"
         }
     }
     
