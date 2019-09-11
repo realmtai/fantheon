@@ -36,6 +36,7 @@ class MainWindowController: NSWindowController {
             
             strongSelf.serverConfig.storeUrl = (url ?? strongSelf.serverConfig.storeUrl)
             let cfg = strongSelf.serverConfig
+            NSWorkspace.shared.open(strongSelf.serverConfig.storeUrl)
             
             let serveCmd = CliCmd.server(.update(cfg))
             strongSelf.theViewController.requestToStart(withCommands: [startCmd.cmd,
