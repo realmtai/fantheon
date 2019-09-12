@@ -400,9 +400,9 @@
                                 <toolbarItem implicitItemIdentifier="B6DD4D18-4A90-4B7F-8AB1-23243DFF864D" label="Run/Stop" paletteLabel="Run/Stop" id="Qq5-2U-2zz">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="32" height="18"/>
-                                    <size key="maxSize" width="48" height="32"/>
+                                    <size key="maxSize" width="48" height="29"/>
                                     <button key="view" verticalHuggingPriority="750" id="hM4-PJ-pFj">
-                                        <rect key="frame" x="11" y="14" width="35" height="30"/>
+                                        <rect key="frame" x="11" y="14" width="35" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" title="" bezelStyle="regularSquare" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UU3-Nt-E4h">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -441,13 +441,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="39D072F1-F639-44AF-B805-AF399B61CC78" label="Config" paletteLabel="Config" id="ePx-3o-6tv">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="48" height="32"/>
-                                    <size key="maxSize" width="48" height="48"/>
+                                    <size key="minSize" width="32" height="28"/>
+                                    <size key="maxSize" width="48" height="29"/>
                                     <button key="view" verticalHuggingPriority="750" id="zQe-YC-nCb">
-                                        <rect key="frame" x="0.0" y="14" width="48" height="32"/>
+                                        <rect key="frame" x="0.0" y="14" width="48" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W1F-TA-cG5">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <buttonCell key="cell" type="bevel" title="" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W1F-TA-cG5">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" size="20" name="Ionicons"/>
                                         </buttonCell>
                                         <connections>
