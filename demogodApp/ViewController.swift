@@ -44,7 +44,7 @@ class ViewController: NSViewController {
         didSet {
             let localValue = log
             DispatchQueue.main.async { [weak self] in
-                print(localValue)
+//                print(localValue)
                 guard let strongSelf = self else { return }
                 let trunkString = String(localValue.prefix(65536))
                 strongSelf.tableViewDataStore.append(trunkString)
@@ -54,7 +54,7 @@ class ViewController: NSViewController {
     
     fileprivate lazy var binaryURL: URL = {
         let mainBundle = Bundle.main.bundleURL
-            .appendingPathComponent("Contents/MacOS", isDirectory: true)
+            .appendingPathComponent("Contents/Resources", isDirectory: true)
             .appendingPathComponent("demogod")
         return mainBundle
     }()
@@ -97,6 +97,7 @@ class ViewController: NSViewController {
             proc.terminationHandler = {[weak self] (proc) in
                 guard let strongSelf = self else { return }
                 strongSelf.process = nil
+                strongSelf.log = "Process exited \(proc.terminationStatus)"
             }
         }
     }

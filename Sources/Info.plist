@@ -8,11 +8,7 @@
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleSupportedPlatforms</key>
-	<string>MacOSX</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.10</string>
 </dict>
 </plist>
