@@ -53,9 +53,10 @@ class ViewController: NSViewController {
     }
     
     fileprivate lazy var binaryURL: URL = {
-        let mainBundle = Bundle.main.bundleURL
-            .appendingPathComponent("Contents/Resources", isDirectory: true)
-            .appendingPathComponent("demogod")
+        let mainBundle = Bundle.main.url(forAuxiliaryExecutable: "demogod")!
+//            .bundleURL
+//            .appendingPathComponent("Contents/MacOS", isDirectory: true)
+//            .appendingPathComponent("demogod")
         return mainBundle
     }()
     
@@ -97,7 +98,7 @@ class ViewController: NSViewController {
             proc.terminationHandler = {[weak self] (proc) in
                 guard let strongSelf = self else { return }
                 strongSelf.process = nil
-                strongSelf.log = "Process exited \(proc.terminationStatus)"
+                strongSelf.log = "Process exited \(proc.terminationStatus), \(proc.terminationReason.rawValue)"
             }
         }
     }
