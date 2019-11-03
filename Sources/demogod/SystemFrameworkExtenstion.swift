@@ -14,7 +14,7 @@ extension String {
         let method = req.method.rawValue.filteredForFileSystem()
         let path = (req.parsedURL.path ?? "/").split(separator: "/").joined(separator: ":").filteredForFileSystem()
         
-        return [method, path].joined(separator: ".")
+        return [method, path].joined(separator: ":")
     }
     
     static func metaFileName(fromRequest req: RouterRequest) -> String {
@@ -49,14 +49,13 @@ extension NSError {
         return NSError(domain: "com.downloadthebear.main.runtime.error",
                        code: 000,
                        userInfo: [NSLocalizedDescriptionKey: "Unable to locate request server"])
-    }
-    
-    
+    } 
     
 }
 
 
 extension Data {
+    
     func append(fileURL: URL) throws {
         if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
             defer {
@@ -69,4 +68,16 @@ extension Data {
             try write(to: fileURL, options: .atomic)
         }
     }
+    
+}
+
+
+extension FileManager {
+    
+    func fileNames(at directory: URL, skipsHiddenFiles: Bool = true) -> [String] {
+        let fileURLs = try? contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: skipsHiddenFiles ? .skipsHiddenFiles : [] )
+        let fileNames = (fileURLs ?? []).map({ $0.lastPathComponent })
+        return fileNames
+    }
+    
 }

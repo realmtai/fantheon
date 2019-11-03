@@ -35,13 +35,22 @@ class RequestServer {
             
             Log.info("Request \(request.urlURL.absoluteString)")
             let storePath = config.storeUrl
-            let fileName = String.fileName(fromRequest: request)
+            let fileNameLiteral = String.fileName(fromRequest: request)
             let profileName = config.profile
             let containedFolder = storePath
                 .appendingPathComponent(profileName, isDirectory: true)
+
+            let matches = FileManager.default
+                .fileNames(at: containedFolder)
+                .filter({ !$0.hasPrefix("_") })
+                .filter({ fileNameLiteral.range(of: $0, options: .regularExpression) != nil })
+            
+            let fileName = matches.first ?? fileNameLiteral
+            Log.info("Using first of \(matches.count): \(fileName)")
+            
             let fileUrl = containedFolder
                 .appendingPathComponent(fileName, isDirectory: false)
-            
+
             let data = config.defaultJSONData
             resp.headers.setType(request.urlURL.pathExtension)
             
