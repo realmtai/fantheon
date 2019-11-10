@@ -52,7 +52,7 @@ class MainWindowController: NSWindowController {
         } else {
             theViewController.requestToStop()
         }
-        sender.title = (sender.state == .on ?"" :"")
+        sender.title = (sender.state == .on ?"▸" :"◻️")
     }
     
     @IBAction func requestToSendCmd(_ sender: NSButton) {

@@ -48,31 +48,22 @@
 		EE78E519231DCE6700725AA9 /* KituraTemplateEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-TemplateEngine::KituraTemplateEngine::Product" /* KituraTemplateEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE78E51D231DCE6700725AA9 /* HeliumLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "HeliumLogger::HeliumLogger::Product" /* HeliumLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EE78E521231DCE6700725AA9 /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Socket::Socket::Product" /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EE99FD342378A49C00617478 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE76BC1D231D52A100965D32 /* ionicons.ttf */; };
 		EEA21E5F22FF1A690029BC1A /* CLIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA21E5E22FF1A690029BC1A /* CLIServer.swift */; };
 		EEA21E6022FF288D0029BC1A /* SystemFrameworkExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1868522FF199800F6F6FE /* SystemFrameworkExtenstion.swift */; };
 		EEA21E6122FF288D0029BC1A /* CLIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA21E5E22FF1A690029BC1A /* CLIServer.swift */; };
 		EEA531F0237885B700CF74F2 /* CHTTPParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-net::CHTTPParser::Product" /* CHTTPParser.framework */; };
-		EEA531F1237885B700CF74F2 /* CHTTPParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-net::CHTTPParser::Product" /* CHTTPParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531F3237885B900CF74F2 /* HeliumLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HeliumLogger::HeliumLogger::Product" /* HeliumLogger.framework */; };
-		EEA531F4237885B900CF74F2 /* HeliumLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "HeliumLogger::HeliumLogger::Product" /* HeliumLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531F5237885BA00CF74F2 /* Kitura.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura::Kitura::Product" /* Kitura.framework */; };
-		EEA531F6237885BA00CF74F2 /* Kitura.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura::Kitura::Product" /* Kitura.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531F7237885BD00CF74F2 /* KituraContracts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "KituraContracts::KituraContracts::Product" /* KituraContracts.framework */; };
-		EEA531F8237885BD00CF74F2 /* KituraContracts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "KituraContracts::KituraContracts::Product" /* KituraContracts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531F9237885BE00CF74F2 /* KituraNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-net::KituraNet::Product" /* KituraNet.framework */; };
-		EEA531FA237885BE00CF74F2 /* KituraNet.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-net::KituraNet::Product" /* KituraNet.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531FB237885C100CF74F2 /* KituraTemplateEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-TemplateEngine::KituraTemplateEngine::Product" /* KituraTemplateEngine.framework */; };
-		EEA531FC237885C100CF74F2 /* KituraTemplateEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Kitura-TemplateEngine::KituraTemplateEngine::Product" /* KituraTemplateEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531FD237885C200CF74F2 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "LoggerAPI::LoggerAPI::Product" /* LoggerAPI.framework */; };
-		EEA531FE237885C200CF74F2 /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "LoggerAPI::LoggerAPI::Product" /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA531FF237885C400CF74F2 /* Logging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "swift-log::Logging::Product" /* Logging.framework */; };
-		EEA53200237885C400CF74F2 /* Logging.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "swift-log::Logging::Product" /* Logging.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA53201237885C600CF74F2 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Socket::Socket::Product" /* Socket.framework */; };
-		EEA53202237885C600CF74F2 /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "Socket::Socket::Product" /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA53203237885C700CF74F2 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SSLService::SSLService::Product" /* SSLService.framework */; };
-		EEA53204237885C700CF74F2 /* SSLService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "SSLService::SSLService::Product" /* SSLService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EEA53205237885C900CF74F2 /* TypeDecoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "TypeDecoder::TypeDecoder::Product" /* TypeDecoder.framework */; };
-		EEA53206237885C900CF74F2 /* TypeDecoder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "TypeDecoder::TypeDecoder::Product" /* TypeDecoder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EEC914062378A5750085E623 /* ionicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = EE76BC1D231D52A100965D32 /* ionicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		EECEA7A123005E9B00F5331B /* CLIContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEA7A023005E9B00F5331B /* CLIContext.swift */; };
 		EECEA7A223005E9B00F5331B /* CLIContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECEA7A023005E9B00F5331B /* CLIContext.swift */; };
 		EECEA7A923007D4300F5331B /* demogodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* demogodTests.swift */; };
@@ -91,7 +82,6 @@
 		EED3DF4F232B267600BF1401 /* HeliumLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HeliumLogger::HeliumLogger::Product" /* HeliumLogger.framework */; };
 		EED3DF50232B267600BF1401 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Socket::Socket::Product" /* Socket.framework */; };
 		EEDE9AD1232944380098731E /* Logging.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "swift-log::Logging::Product" /* Logging.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EEE109F6235B51F000B1E13B /* ionicons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = EE76BC1D231D52A100965D32 /* ionicons.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		EEEE09B42327F3550043410B /* ConfigServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE09B32327F3550043410B /* ConfigServerViewController.swift */; };
 		OBJ_192 /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_104 /* http_parser.c */; };
 		OBJ_193 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_105 /* utils.c */; };
@@ -674,27 +664,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEA531F2237885B700CF74F2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EEA531F6237885BA00CF74F2 /* Kitura.framework in Embed Frameworks */,
-				EEA53206237885C900CF74F2 /* TypeDecoder.framework in Embed Frameworks */,
-				EEA531F4237885B900CF74F2 /* HeliumLogger.framework in Embed Frameworks */,
-				EEA531FC237885C100CF74F2 /* KituraTemplateEngine.framework in Embed Frameworks */,
-				EEA531F8237885BD00CF74F2 /* KituraContracts.framework in Embed Frameworks */,
-				EEA53200237885C400CF74F2 /* Logging.framework in Embed Frameworks */,
-				EEA53204237885C700CF74F2 /* SSLService.framework in Embed Frameworks */,
-				EEA531FE237885C200CF74F2 /* LoggerAPI.framework in Embed Frameworks */,
-				EEA53202237885C600CF74F2 /* Socket.framework in Embed Frameworks */,
-				EEA531F1237885B700CF74F2 /* CHTTPParser.framework in Embed Frameworks */,
-				EEA531FA237885BE00CF74F2 /* KituraNet.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EED3DF44232AE13600BF1401 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -707,11 +676,11 @@
 		};
 		EEE109F2235B505900B1E13B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
-				EEE109F6235B51F000B1E13B /* ionicons.ttf in CopyFiles */,
+				EEC914062378A5750085E623 /* ionicons.ttf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1987,7 +1956,6 @@
 				EECEA7A72300690D00F5331B /* ShellScript */,
 				OBJ_469 /* Sources */,
 				OBJ_471 /* Frameworks */,
-				EEA531F2237885B700CF74F2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2187,6 +2155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE99FD342378A49C00617478 /* ionicons.ttf in Resources */,
 				EE11BF1F22F7431A0057B44D /* Assets.xcassets in Resources */,
 				EE11BF2222F7431A0057B44D /* Main.storyboard in Resources */,
 			);
@@ -2924,6 +2893,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 2S6P642Q26;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2943,6 +2913,7 @@
 				INFOPLIST_FILE = demogodApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -2991,6 +2962,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 2S6P642Q26;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3005,6 +2977,7 @@
 				INFOPLIST_FILE = demogodApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
@@ -4108,7 +4081,7 @@
 					"$(SRCROOT)/.build/checkouts/Kitura-net/Sources/CHTTPParser/include",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -4142,7 +4115,7 @@
 					"$(SRCROOT)/.build/checkouts/Kitura-net/Sources/CHTTPParser/include",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
