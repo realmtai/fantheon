@@ -34,7 +34,7 @@ class RequestServer {
             let config = strongSelf.config
             
             Log.info("Request \(request.urlURL.absoluteString)")
-            let storePath = config.storeUrl
+            let storePath = URL(fileURLWithPath: config.storeUrl.path)
             let fileNameLiteral = String.fileName(fromRequest: request)
             let profileName = config.profile
             let containedFolder = storePath
@@ -55,11 +55,15 @@ class RequestServer {
             resp.headers.setType(request.urlURL.pathExtension)
             
             if FileManager.default.isReadableFile(atPath: fileUrl.path) {
+                let tags = FileManager.tags(forURL: fileUrl)
+                let code: HTTPStatusCode = tags.first?.statusCode ?? .accepted
+                Log.info("Using \(fileName): \(code.rawValue) \(code)")
+                
                 guard let file = try? Data(contentsOf: fileUrl) else {
-                    try resp.send(data: data).status(.accepted).end()
+                    try resp.send(data: data).status(code).end()
                     return
                 }
-                try resp.send(data: file).status(.accepted).end()
+                try resp.send(data: file).status(code).end()
                 
             } else {
                 if !FileManager.default.isReadableFile(atPath: containedFolder.path) {

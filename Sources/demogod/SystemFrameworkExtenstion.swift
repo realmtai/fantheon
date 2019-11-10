@@ -28,6 +28,14 @@ extension String {
         return self.filter { String.okayChars.contains($0) }
     }
     
+    var statusCode: HTTPStatusCode {
+        guard let intValue = Int(self),
+            let code = HTTPStatusCode(rawValue: intValue) else {
+            return .accepted
+        }
+        return (code == .unknown) ?.accepted :code
+    }
+    
 }
 
 
@@ -78,6 +86,14 @@ extension FileManager {
         let fileURLs = try? contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: skipsHiddenFiles ? .skipsHiddenFiles : [] )
         let fileNames = (fileURLs ?? []).map({ $0.lastPathComponent })
         return fileNames
+    }
+    
+    static func tags(forURL url:URL) -> [String] {
+        guard let res = (try? url.resourceValues(forKeys: [.tagNamesKey])),
+            let tags = res.tagNames else {
+            return []
+        }
+        return tags
     }
     
 }
