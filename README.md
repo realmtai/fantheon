@@ -1,3 +1,3 @@
-# demogod
+# Fantheon
 
-A description of this package.
+A description of this package. TBD
