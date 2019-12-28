@@ -1,0 +1,14 @@
+{
+  "title": "Fantheon",
+  "icon": "MyIcon.icns",
+  "contents": [
+    { "x": 448, "y": 100, "type": "link", "path": "/Applications" },
+    { "x": 192, "y": 100, "type": "file", "path": "app/Fantheon.app" }
+  ],
+  "window": {
+      "size" : {
+          "width" : 656,
+          "height": 200
+      }
+  }
+}
